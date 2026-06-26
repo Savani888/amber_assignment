@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model QuoteRequest {
+  id             String           @id @default(cuid())
+  customer       String
+  project        String
+  status         String           @default("NEW")
+  estimatedValue Float
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  analyses       AnalysisResult[]
+
+  @@map("quote_requests")
+}
+
+model AnalysisResult {
+  id           String       @id @default(cuid())
+  quoteId      String
+  risk         String
+  confidence   Float
+  missingItems Json
+  rawResponse   Json?
+  analyzedAt   DateTime     @default(now())
+  quote        QuoteRequest @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+
+  @@index([quoteId, analyzedAt])
+  @@map("analysis_results")
+}
+
