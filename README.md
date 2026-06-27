@@ -131,4 +131,10 @@ Errors include `requestId` and a structured error body. The API handles:
 - Pagination for `GET /quotes`
 - Request ID middleware using `x-request-id`
 - Unit tests
+- ## API Screenshots
+
+##API testing screenshots are included in the completed assignment document.
+
+##The Postman collection is available as:
+amber_assignment.postman_collection.json
 
