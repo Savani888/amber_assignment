@@ -15,8 +15,28 @@ export const createQuoteSchema = z.object({
   estimatedValue: z.number().min(0, "estimatedValue cannot be negative")
 });
 
+const statusAliases: Record<string, QuoteStatus> = {
+  NEW: QuoteStatus.NEW,
+  IN_REVIEW: QuoteStatus.IN_REVIEW,
+  NEEDS_INFO: QuoteStatus.NEEDS_INFO,
+  COMPLETED: QuoteStatus.COMPLETED
+};
+
 export const updateStatusSchema = z.object({
-  status: z.nativeEnum(QuoteStatus)
+  status: z.string().transform((raw, ctx) => {
+    const normalized = raw.trim().toUpperCase().replace(/\s+/g, "_");
+    const mapped = statusAliases[normalized];
+
+    if (mapped) {
+      return mapped;
+    }
+
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "status must be one of NEW, IN_REVIEW, NEEDS_INFO, COMPLETED"
+    });
+    return z.NEVER;
+  })
 });
 
 export const paginationSchema = z.object({
@@ -26,4 +46,3 @@ export const paginationSchema = z.object({
 
 export type CreateQuoteInput = z.infer<typeof createQuoteSchema>;
 export type UpdateStatusInput = z.infer<typeof updateStatusSchema>;
-
