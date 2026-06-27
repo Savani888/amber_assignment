@@ -96,8 +96,8 @@ Content-Type: application/json
 }
 ```
 
-Allowed values: `NEW`, `IN_REVIEW`, `NEEDS_INFO`, `COMPLETED`.
-
+Allowed values: `New`, `In Review`, `Needs Info`, `Completed`.
+Internally stored as enum: `NEW`, `IN_REVIEW`, `NEEDS_INFO`, `COMPLETED`.
 ## Example cURL
 
 ```bash
