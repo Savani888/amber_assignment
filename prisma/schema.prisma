@@ -22,15 +22,14 @@ model QuoteRequest {
 
 model AnalysisResult {
   id            String       @id @default(cuid())
-  quote_id      String
+  quote_id      String       @map("quoteId")
   risk          String
   confidence    Float
-  missing_items Json
+  missing_items Json         @map("missingItems")
   rawResponse   Json?
-  analyzed_at   DateTime     @default(now())
+  analyzed_at   DateTime     @default(now()) @map("analyzedAt")
   quote         QuoteRequest @relation(fields: [quote_id], references: [id], onDelete: Cascade)
 
   @@index([quote_id, analyzed_at])
   @@map("analysis_results")
 }
-
