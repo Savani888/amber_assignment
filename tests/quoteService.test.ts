@@ -20,12 +20,12 @@ describe("QuoteService", () => {
       findById: vi.fn().mockResolvedValue(sampleQuote),
       createAnalysis: vi.fn().mockResolvedValue({
         id: "analysis_1",
-        quoteId: "quote_1",
+        quote_id: "quote_1",
         risk: "Medium",
         confidence: 0.91,
-        missingItems: ["Structural drawings"],
+        missing_items: ["Structural drawings"],
         rawResponse: {},
-        analyzedAt: new Date("2026-01-01T00:00:00.000Z")
+        analyzed_at: new Date("2026-01-01T00:00:00.000Z")
       })
     };
     const client = {
@@ -41,10 +41,10 @@ describe("QuoteService", () => {
 
     expect(client.analyze).toHaveBeenCalledWith("quote_1");
     expect(repository.createAnalysis).toHaveBeenCalledWith({
-      quoteId: "quote_1",
+      quote_id: "quote_1",
       risk: "Medium",
       confidence: 0.91,
-      missingItems: ["Structural drawings"],
+      missing_items: ["Structural drawings"],
       rawResponse: {
         risk: "Medium",
         missing_items: ["Structural drawings"],

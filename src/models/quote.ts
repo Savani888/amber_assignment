@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 export enum QuoteStatus {
-  NEW = "NEW",
-  IN_REVIEW = "IN_REVIEW",
-  NEEDS_INFO = "NEEDS_INFO",
-  COMPLETED = "COMPLETED"
+  NEW = "New",
+  IN_REVIEW = "In Review",
+  NEEDS_INFO = "Needs Info",
+  COMPLETED = "Completed"
 }
 
 export const allowedStatuses = Object.values(QuoteStatus);

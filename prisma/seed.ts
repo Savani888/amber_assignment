@@ -18,10 +18,10 @@ async function main() {
 
   await prisma.analysisResult.create({
     data: {
-      quoteId: quote.id,
+      quote_id: quote.id,
       risk: "Medium",
       confidence: 0.91,
-      missingItems: ["Structural drawings", "Load requirements"],
+      missing_items: ["Structural drawings", "Load requirements"],
       rawResponse: {
         risk: "Medium",
         missing_items: ["Structural drawings", "Load requirements"],

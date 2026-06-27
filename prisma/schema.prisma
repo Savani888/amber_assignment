@@ -11,7 +11,7 @@ model QuoteRequest {
   id             String           @id @default(cuid())
   customer       String
   project        String
-  status         String           @default("NEW")
+  status         String           @default("New")
   estimatedValue Float
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
@@ -21,16 +21,16 @@ model QuoteRequest {
 }
 
 model AnalysisResult {
-  id           String       @id @default(cuid())
-  quoteId      String
-  risk         String
-  confidence   Float
-  missingItems Json
+  id            String       @id @default(cuid())
+  quote_id      String
+  risk          String
+  confidence    Float
+  missing_items Json
   rawResponse   Json?
-  analyzedAt   DateTime     @default(now())
-  quote        QuoteRequest @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  analyzed_at   DateTime     @default(now())
+  quote         QuoteRequest @relation(fields: [quote_id], references: [id], onDelete: Cascade)
 
-  @@index([quoteId, analyzedAt])
+  @@index([quote_id, analyzed_at])
   @@map("analysis_results")
 }
 

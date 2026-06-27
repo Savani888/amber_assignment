@@ -15,7 +15,7 @@ export class QuoteRepository {
         take: limit,
         include: {
           analyses: {
-            orderBy: { analyzedAt: "desc" },
+            orderBy: { analyzed_at: "desc" },
             take: 1
           }
         }
@@ -30,7 +30,7 @@ export class QuoteRepository {
       where: { id },
       include: {
         analyses: {
-          orderBy: { analyzedAt: "desc" }
+          orderBy: { analyzed_at: "desc" }
         }
       }
     });

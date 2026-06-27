@@ -49,10 +49,10 @@ export class QuoteService {
 
     const analysis = await this.analysisClient.analyze(id);
     const storedAnalysis = await this.quotes.createAnalysis({
-      quoteId: id,
+      quote_id: id,
       risk: analysis.risk,
       confidence: analysis.confidence,
-      missingItems: analysis.missing_items,
+      missing_items: analysis.missing_items,
       rawResponse: analysis
     });
 
